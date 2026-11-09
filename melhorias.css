@@ -1,0 +1,210 @@
+/* =====================================================
+   ENTRE NÓS — MELHORIAS VISUAIS (carregar depois do style.css)
+===================================================== */
+
+/* ---------- Botão de tema ---------- */
+
+.btn-tema {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    color: var(--roxo);
+    font-size: 17px;
+    background: #f5edff;
+    border: 1px solid #e4d4ef;
+    border-radius: 50%;
+    transition: transform .2s ease, background .2s ease;
+}
+
+.btn-tema:hover {
+    transform: rotate(18deg) scale(1.06);
+}
+
+/* ---------- Saída rápida ---------- */
+
+.btn-saida-rapida {
+    position: fixed;
+    left: 18px;
+    bottom: 18px;
+    z-index: 950;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    background: #b3234f;
+    border: 0;
+    border-radius: 999px;
+    box-shadow: 0 8px 22px rgba(179, 35, 79, .35);
+    opacity: .88;
+    transition: opacity .2s ease, transform .2s ease;
+}
+
+.btn-saida-rapida:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .btn-saida-rapida { left: 12px; bottom: 12px; padding: 9px 13px; font-size: 12px; }
+}
+
+@media print {
+    .btn-saida-rapida, .btn-tema { display: none; }
+}
+
+/* =====================================================
+   TEMA ESCURO
+===================================================== */
+
+html[data-tema="escuro"] {
+    color-scheme: dark;
+    --texto: #ece4f3;
+    --texto-suave: #b9aec4;
+    --roxo: #b58be6;
+    --roxo-escuro: #dcc6f5;
+    --fundo-roxo: #3a2352;
+    --borda: #4a3563;
+}
+
+html[data-tema="escuro"] body {
+    color: var(--texto);
+    background: #1a1024;
+}
+
+html[data-tema="escuro"] #header,
+html[data-tema="escuro"] #header.rolado {
+    background: rgba(32, 19, 44, .97);
+    border-bottom-color: rgba(181, 139, 230, .18);
+}
+
+html[data-tema="escuro"] nav a { color: #d8cce4; }
+
+html[data-tema="escuro"] .btn-tema {
+    color: #ffd76a;
+    background: #35224a;
+    border-color: #4a3563;
+}
+
+html[data-tema="escuro"] .banner {
+    background:
+        radial-gradient(circle at 85% 20%, rgba(255, 64, 129, .18), transparent 30%),
+        radial-gradient(circle at 10% 85%, rgba(109, 53, 168, .3), transparent 35%),
+        linear-gradient(135deg, #25143a, #2e1530);
+}
+
+html[data-tema="escuro"] .banner::before,
+html[data-tema="escuro"] .banner::after { opacity: .25; }
+
+html[data-tema="escuro"] .banner p { color: #c9bdd6; }
+
+html[data-tema="escuro"] .banner-texto > span,
+html[data-tema="escuro"] .botao2 {
+    color: #dcc6f5;
+    background: rgba(255, 255, 255, .08);
+    border-color: rgba(181, 139, 230, .3);
+}
+
+html[data-tema="escuro"] .sobre,
+html[data-tema="escuro"] .contato {
+    background: #1f1329;
+}
+
+html[data-tema="escuro"] .estatisticas,
+html[data-tema="escuro"] .questionario,
+html[data-tema="escuro"] .resultado,
+html[data-tema="escuro"] .analise {
+    background: #1a1024;
+}
+
+html[data-tema="escuro"] .card,
+html[data-tema="escuro"] .pergunta,
+html[data-tema="escuro"] .resultado-card,
+html[data-tema="escuro"] .modal-acolhimento,
+html[data-tema="escuro"] .item-grafico {
+    color: var(--texto);
+    background: #281a37;
+    border-color: #3d2b52;
+}
+
+html[data-tema="escuro"] .pergunta label {
+    color: #d8cce4;
+    background: #2f2040;
+    border-color: #45305c;
+}
+
+html[data-tema="escuro"] .pergunta label:hover,
+html[data-tema="escuro"] .pergunta label:has(input:checked) {
+    background: #3d2757;
+    border-color: #b58be6;
+}
+
+html[data-tema="escuro"] .aviso-educativo,
+html[data-tema="escuro"] #orientacoes,
+html[data-tema="escuro"] #opcoesApoio,
+html[data-tema="escuro"] #opcoesDenuncia,
+html[data-tema="escuro"] .ia-convite {
+    color: var(--texto);
+    background: #2c1d3d;
+    border-color: #45305c;
+}
+
+html[data-tema="escuro"] #mensagemResultado {
+    background: #3a1d2d;
+}
+
+html[data-tema="escuro"] #mensagemResultado h3 { color: #ffb3cf; }
+html[data-tema="escuro"] #mensagemResultado p { color: #eadff0; }
+
+html[data-tema="escuro"] .barra,
+html[data-tema="escuro"] .barra-progresso { background: #3d2b52; }
+
+html[data-tema="escuro"] #formContato input,
+html[data-tema="escuro"] #formContato textarea,
+html[data-tema="escuro"] .seletor-grafico select {
+    color: var(--texto);
+    background: #2f2040;
+    border-color: #45305c;
+}
+
+html[data-tema="escuro"] #opcoesApoio a,
+html[data-tema="escuro"] #opcoesDenuncia a,
+html[data-tema="escuro"] .opcoes-acolhimento button {
+    color: #dcc6f5;
+    background: #35224a;
+    border-color: #4a3563;
+}
+
+html[data-tema="escuro"] .ia-container,
+html[data-tema="escuro"] .sugestoes-ia,
+html[data-tema="escuro"] .form-ia,
+html[data-tema="escuro"] .ia-aviso {
+    background: #231532;
+    border-color: #3d2b52;
+}
+
+html[data-tema="escuro"] .mensagens-ia,
+html[data-tema="escuro"] .indicador-digitacao { background: #1c1128; }
+
+html[data-tema="escuro"] .mensagem-ia.ia {
+    color: #ece4f3;
+    background: #2f2040;
+    border-color: #45305c;
+}
+
+html[data-tema="escuro"] .form-ia textarea {
+    color: var(--texto);
+    background: #2f2040;
+    border-color: #45305c;
+}
+
+html[data-tema="escuro"] .cartao-emergencia { background: #3a1d2d; border-color: #6a2f4a; }
+html[data-tema="escuro"] .cartao-emergencia a { color: var(--texto); background: #2f2040; border-color: #6a2f4a; }
+html[data-tema="escuro"] .cartao-emergencia strong { color: #ffb3cf; }
+
+html[data-tema="escuro"] .chips-ia button,
+html[data-tema="escuro"] .resp-fechar { color: #dcc6f5; background: #2f2040; border-color: #45305c; }
+html[data-tema="escuro"] .cartao-respiracao { background: #2c1d3d; border-color: #45305c; }
+html[data-tema="escuro"] .resp-texto { color: #dcc6f5; }
