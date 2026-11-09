@@ -1,1657 +1,542 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <meta name="theme-color" content="#6d35a8">
-
-<meta name="description"
-    content="Entre Nós - plataforma educativa para reflexão sobre relacionamentos.">
-
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Entre Nós - plataforma educativa para reflexão sobre relacionamentos.">
+<meta property="og:title" content="Entre Nós">
+<meta property="og:description" content="Plataforma educativa para refletir sobre relacionamentos saudáveis.">
+<meta property="og:type" content="website">
 <title>Entre Nós</title>
 
-<!-- CSS -->
-   <link rel="stylesheet" href="style.css">
-   <link rel="stylesheet" href="melhorias.css">
+<!-- CSS (as melhorias visuais e o modo escuro já vêm dentro do ia.js) -->
+<link rel="stylesheet" href="style.css">
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin>
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- Font Awesome -->
-<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-<!-- Ícone (evita o 404 de /favicon.ico no Live Server) -->
+<!-- Ícone -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%92%9C%3C/text%3E%3C/svg%3E">
 
+<style>
+/* Novos elementos do index (faixa de emergência, link de pular, canais de ajuda) */
+.skip-link{position:absolute;left:-9999px;top:8px;z-index:3000;padding:10px 16px;color:#fff;background:#48216f;border-radius:8px;text-decoration:none}
+.skip-link:focus{left:8px}
+.faixa-emergencia{padding:8px 14px;text-align:center;color:#fff;font-size:13px;background:linear-gradient(90deg,#48216f,#b3234f)}
+.faixa-emergencia a{color:#fff;font-weight:700;text-decoration:underline;margin:0 3px}
+.dica-teclas{margin-top:14px;color:var(--texto-suave);font-size:12px}
+.privacidade-quiz{display:inline-flex;align-items:center;gap:7px;margin-bottom:18px;padding:7px 14px;color:var(--roxo);font-size:13px;background:#f5edff;border-radius:20px}
+.ajuda{background:linear-gradient(135deg,#f6edff,#fff0f6);text-align:center}
+.ajuda>.container>p{max-width:640px;margin:0 auto 30px;color:var(--texto-suave)}
+.ajuda-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.ajuda-card{display:flex;flex-direction:column;align-items:center;gap:4px;padding:24px 16px;color:var(--texto);text-decoration:none;background:#fff;border:1px solid rgba(109,53,168,.1);border-radius:var(--raio);box-shadow:var(--sombra);transition:transform .25s ease,box-shadow .25s ease}
+.ajuda-card:hover{transform:translateY(-5px);box-shadow:var(--sombra-forte)}
+.ajuda-card i{color:var(--rosa);font-size:22px}
+.ajuda-card b{color:var(--roxo);font-size:34px;line-height:1.1}
+.ajuda-card strong{font-size:14px}
+.ajuda-card span{color:var(--texto-suave);font-size:12px}
+@media(max-width:800px){.ajuda-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.ajuda-grid{grid-template-columns:1fr}}
+html[data-tema="escuro"] .ajuda{background:#1a1024}
+html[data-tema="escuro"] .ajuda-card{background:#281a37;border-color:#3d2b52;color:#ece4f3}
+html[data-tema="escuro"] .privacidade-quiz{background:#35224a;color:#dcc6f5}
+</style>
 </head>
 
 <body>
 
-<!-- =====================================================
-                         HEADER
-===================================================== -->
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-<header id="header">
-
-
-<div class="logo">
-
-    <i class="fa-solid fa-heart"></i>
-
-    <h1>Entre Nós</h1>
-
+<div class="faixa-emergencia" role="note">
+    Em perigo agora? Ligue <a href="tel:190">190</a> · <a href="tel:180">180</a> · <a href="tel:188">188 (CVV)</a>
 </div>
 
-
-<nav>
-
-    <ul>
-
-        <li>
-            <a href="#inicio">Início</a>
-        </li>
-
-        <li>
-            <a href="#sobre">Sobre</a>
-        </li>
-
-        <li>
-            <a href="#questionario">Questionário</a>
-        </li>
-
-        <li>
-            <a href="#contato">Contato</a>
-        </li>
-
-    </ul>
-
-</nav>
-
-
+<!-- ===================== HEADER ===================== -->
+<header id="header">
+    <div class="logo">
+        <i class="fa-solid fa-heart" aria-hidden="true"></i>
+        <h1>Entre Nós</h1>
+    </div>
+    <nav aria-label="Principal">
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#questionario">Questionário</a></li>
+            <li><a href="#ajuda">Ajuda</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
 </header>
 
-<!-- =====================================================
-                          BANNER
-===================================================== -->
+<main id="conteudo">
 
-<section
-    class="banner"
-    id="inicio"
->
-
-
-<div class="banner-texto">
-
-    <span>
-        Plataforma educativa
-    </span>
-
-    <h2>
-        Pequenas atitudes também contam uma história.
-    </h2>
-
-    <p>
-        Conhecer melhor os relacionamentos pode ajudar
-        a compreender comportamentos, fortalecer o respeito
-        e incentivar relações mais saudáveis.
-    </p>
-
-    <div class="botoes">
-
-        <button
-            id="btnComecar"
-            class="botao"
-            type="button"
-        >
-            Começar
-        </button>
-
-
-        <button
-            id="btnSaibaMais"
-            class="botao2"
-            type="button"
-        >
-            Saiba mais
-        </button>
-
-    </div>
-
-</div>
-
-
-</section>
-
-<!-- =====================================================
-                           SOBRE
-===================================================== -->
-
-<section
-    id="sobre"
-    class="sobre"
->
-
-
-<div class="container">
-
-    <h2>
-        Sobre o projeto
-    </h2>
-
-    <p>
-        O <strong>Entre Nós</strong> foi desenvolvido como
-        um projeto educativo para estimular a reflexão sobre
-        diferentes aspectos dos relacionamentos.
-    </p>
-
-    <p>
-        Ao longo da experiência você encontrará situações
-        inspiradas no cotidiano, responderá um questionário
-        interativo e receberá uma análise baseada nas suas
-        respostas.
-    </p>
-
-    <div class="aviso-educativo">
-
-        <i class="fa-solid fa-circle-info"></i>
-
+<!-- ===================== BANNER ===================== -->
+<section class="banner" id="inicio">
+    <div class="banner-texto">
+        <span>Plataforma educativa</span>
+        <h2>Pequenas atitudes também contam uma história.</h2>
         <p>
-            O questionário é uma ferramenta educativa de
-            reflexão. Ele não substitui uma avaliação
-            profissional e não determina sozinho o que
-            está acontecendo em uma relação.
+            Conhecer melhor os relacionamentos pode ajudar a compreender comportamentos,
+            fortalecer o respeito e incentivar relações mais saudáveis.
         </p>
-
+        <div class="botoes">
+            <button id="btnComecar" class="botao" type="button">Começar</button>
+            <button id="btnSaibaMais" class="botao2" type="button">Saiba mais</button>
+        </div>
     </div>
-
-</div>
-
-
 </section>
 
-<!-- =====================================================
-                       ESTATÍSTICAS
-===================================================== -->
+<!-- ===================== SOBRE ===================== -->
+<section id="sobre" class="sobre">
+    <div class="container">
+        <h2>Sobre o projeto</h2>
+        <p>
+            O <strong>Entre Nós</strong> foi desenvolvido como um projeto educativo para estimular
+            a reflexão sobre diferentes aspectos dos relacionamentos.
+        </p>
+        <p>
+            Ao longo da experiência você encontrará situações inspiradas no cotidiano, responderá
+            um questionário interativo e receberá uma análise baseada nas suas respostas.
+        </p>
+        <div class="aviso-educativo">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <p>
+                O questionário é uma ferramenta educativa de reflexão. Ele não substitui uma avaliação
+                profissional e não determina sozinho o que está acontecendo em uma relação.
+            </p>
+        </div>
+    </div>
+</section>
 
+<!-- ===================== ESTATÍSTICAS ===================== -->
 <section class="estatisticas">
-
-<div class="cards">
-
-    <div class="card">
-
-        <i class="fa-solid fa-list-check"></i>
-
-        <h3>
-            10
-        </h3>
-
-        <p>
-            Perguntas
-        </p>
-
+    <div class="cards">
+        <div class="card"><i class="fa-solid fa-list-check" aria-hidden="true"></i><h3>10</h3><p>Perguntas</p></div>
+        <div class="card"><i class="fa-solid fa-clock" aria-hidden="true"></i><h3>3 min</h3><p>Tempo médio</p></div>
+        <div class="card"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i><h3>Análise</h3><p>Resultado personalizado</p></div>
     </div>
-
-
-    <div class="card">
-
-        <i class="fa-solid fa-clock"></i>
-
-        <h3>
-            3 min
-        </h3>
-
-        <p>
-            Tempo médio
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <i class="fa-solid fa-chart-simple"></i>
-
-        <h3>
-            Análise
-        </h3>
-
-        <p>
-            Resultado personalizado
-        </p>
-
-    </div>
-
-</div>
-
-
 </section>
 
-<!-- =====================================================
-                       QUESTIONÁRIO
-===================================================== -->
+<!-- ===================== QUESTIONÁRIO ===================== -->
+<section id="questionario" class="questionario">
+    <div class="container">
+        <h2>Questionário</h2>
+        <p class="descricao">Responda cada pergunta com sinceridade. Não existem respostas certas ou erradas.</p>
 
-<section
-    id="questionario"
-    class="questionario"
->
-
-
-<div class="container">
-
-    <h2>
-        Questionário
-    </h2>
-
-    <p class="descricao">
-        Responda cada pergunta com sinceridade.
-        Não existem respostas certas ou erradas.
-    </p>
-
-
-    <!-- PROGRESSO -->
-
-    <div class="progresso-info">
-
-        <span id="contador">
-            Pergunta 1 de 10
+        <span class="privacidade-quiz">
+            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+            Suas respostas ficam apenas no seu navegador.
         </span>
 
-        <span id="porcentagem">
-            10%
-        </span>
+        <div class="progresso-info">
+            <span id="contador" aria-live="polite">Pergunta 1 de 10</span>
+            <span id="porcentagem">10%</span>
+        </div>
 
+        <div class="barra-progresso" role="progressbar" aria-label="Progresso do questionário" aria-valuemin="0" aria-valuemax="100" aria-valuenow="10">
+            <div id="progresso"></div>
+        </div>
+
+        <form id="quiz">
+
+        <div class="pergunta ativa" role="radiogroup" aria-labelledby="q1t">
+            <h3 id="q1t">Quando acontece um desentendimento, como geralmente vocês resolvem?</h3>
+            <label><input type="radio" name="q1" value="0"> Conversamos e tentamos entender o lado um do outro.</label>
+            <label><input type="radio" name="q1" value="2"> Às vezes conversamos, mas existem dificuldades.</label>
+            <label><input type="radio" name="q1" value="4"> A discussão termina com medo, pressão ou ameaças.</label>
+        </div>
+
+        <div class="pergunta" role="radiogroup" aria-labelledby="q2t">
+            <h3 id="q2t">Você consegue falar sobre seus sentimentos sem medo da reação da outra pessoa?</h3>
+            <label><input type="radio" name="q2" value="0"> Sim, existe diálogo.</label>
+            <label><input type="radio" name="q2" value="2"> Depende da situação.</label>
+            <label><input type="radio" name="q2" value="4"> Evito falar para não causar problemas.</label>
+        </div>
+
+        <div class="pergunta" role="radiogroup" aria-labelledby="q3t">
+            <h3 id="q3t">Você sente que sua opinião é respeitada dentro da relação?</h3>
+            <label><input type="radio" name="q3" value="0"> Sim, minha opinião importa.</label>
+            <label><input type="radio" name="q3" value="2"> Às vezes sinto que não sou ouvido(a).</label>
+            <label><input type="radio" name="q3" value="4"> Minha opinião quase nunca é considerada.</label>
+        </div>
+
+        <div class="pergunta" role="radiogroup" aria-labelledby="q4t">
+            <h3 id="q4t">Quando você comete um erro, como a outra pessoa reage?</h3>
+            <label><input type="radio" name="q4" value="0"> Conversa e tenta resolver.</label>
+            <label><input type="radio" name="q4" value="2"> Fica chateada, mas depois conversa.</label>
+            <label><input type="radio" name="q4" value="4"> Usa o erro para humilhar ou controlar.</label>
+        </div>
+
+        <div class="pergunta" role="radiogroup" aria-labelledby="q5t">
+            <h3 id="q5t">Você sente liberdade para manter seus amigos, familiares e interesses?</h3>
+            <label><input type="radio" name="q5" value="0"> Sim, tenho meu espaço.</label>
+            <label><input type="radio" name="q5" value="2"> Existem algumas dificuldades.</label>
+            <label><input type="radio" name="q5" value="4"> Sinto que tentam controlar minhas escolhas.</label>
+        </div>
+
+        <div class="pergunta" role="radiogroup" aria-labelledby="q6t">
+            <h3 id="q6t">Como a outra pessoa reage quando você sai ou faz algo sozinho(a)?</h3>
+            <label><input type="radio" name="q6" value="0"> Confia normalmente.</label>
+            <label><input type="radio" name="q6" value="2"> Demonstra insegurança algumas vezes.</label>
+            <label><input type="radio" name="q6" value="4"> Tenta impedir ou controlar.</label>
+        </div>
+
+        <div class="pergunta" role="radiogroup" aria-labelledby="q7t">
+            <h3 id="q7t">A outra pessoa costuma querer saber constantemente onde você está?</h3>
+            <label><input type="radio" name="q7" value="0"> Demonstra cuidado com respeito.</label>
+            <label><input type="radio" name="q7" value="2"> Pergunta frequentemente.</label>
+            <label><input type="radio" name="q7" value="4"> Exige explicações e tenta controlar.</label>
+        </div>
+
+        <div class="pergunta" role="radiogroup" aria-labelledby="q8t">
+            <h3 id="q8t">Quando você diz "não", sua decisão é respeitada?</h3>
+            <label><input type="radio" name="q8" value="0"> Sim.</label>
+            <label><input type="radio" name="q8" value="2"> Às vezes existe pressão.</label>
+            <label><input type="radio" name="q8" value="4"> Meu limite não é respeitado.</label>
+        </div>
+
+        <div class="pergunta" role="radiogroup" aria-labelledby="q9t">
+            <h3 id="q9t">Como você se sente na maior parte do tempo nessa relação?</h3>
+            <label><input type="radio" name="q9" value="0"> Feliz e respeitado(a).</label>
+            <label><input type="radio" name="q9" value="2"> Tenho algumas preocupações.</label>
+            <label><input type="radio" name="q9" value="4"> Sinto medo, tristeza ou muita pressão.</label>
+        </div>
+
+        <div class="pergunta" role="radiogroup" aria-labelledby="q10t">
+            <h3 id="q10t">Depois de responder, como você avalia essa relação?</h3>
+            <label><input type="radio" name="q10" value="0"> Existe respeito e equilíbrio.</label>
+            <label><input type="radio" name="q10" value="2"> Existem pontos que precisam melhorar.</label>
+            <label><input type="radio" name="q10" value="4"> Existem situações que precisam de atenção.</label>
+        </div>
+
+        </form>
+
+        <p id="avisoQuiz" class="aviso-quiz" role="alert"></p>
+
+        <div class="botoes-questionario">
+            <button id="btnAnterior" type="button" disabled>
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Anterior
+            </button>
+            <button id="btnProximo" type="button">
+                Próxima <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <p class="dica-teclas">Dica: use as teclas 1, 2 e 3 para escolher a resposta.</p>
     </div>
-
-
-    <div class="barra-progresso" role="progressbar" aria-label="Progresso do questionário" aria-valuemin="0" aria-valuemax="100" aria-valuenow="10">
-
-        <div id="progresso"></div>
-
-    </div>
-
-
-
-    <!-- =================================================
-                     FORMULÁRIO
-    ================================================= -->
-
-    <form id="quiz">
-
-
-        <!-- PERGUNTA 1 -->
-
-        <div class="pergunta ativa">
-
-            <h3>
-                Quando acontece um desentendimento,
-                como geralmente vocês resolvem?
-            </h3>
-
-            <label>
-                <input type="radio" name="q1" value="0">
-                Conversamos e tentamos entender
-                o lado um do outro.
-            </label>
-
-            <label>
-                <input type="radio" name="q1" value="2">
-                Às vezes conversamos, mas existem
-                dificuldades.
-            </label>
-
-            <label>
-                <input type="radio" name="q1" value="4">
-                A discussão termina com medo,
-                pressão ou ameaças.
-            </label>
-
-        </div>
-
-
-
-        <!-- PERGUNTA 2 -->
-
-        <div class="pergunta">
-
-            <h3>
-                Você consegue falar sobre seus sentimentos
-                sem medo da reação da outra pessoa?
-            </h3>
-
-            <label>
-                <input type="radio" name="q2" value="0">
-                Sim, existe diálogo.
-            </label>
-
-            <label>
-                <input type="radio" name="q2" value="2">
-                Depende da situação.
-            </label>
-
-            <label>
-                <input type="radio" name="q2" value="4">
-                Evito falar para não causar problemas.
-            </label>
-
-        </div>
-
-
-
-        <!-- PERGUNTA 3 -->
-
-        <div class="pergunta">
-
-            <h3>
-                Você sente que sua opinião é respeitada
-                dentro da relação?
-            </h3>
-
-            <label>
-                <input type="radio" name="q3" value="0">
-                Sim, minha opinião importa.
-            </label>
-
-            <label>
-                <input type="radio" name="q3" value="2">
-                Às vezes sinto que não sou ouvido(a).
-            </label>
-
-            <label>
-                <input type="radio" name="q3" value="4">
-                Minha opinião quase nunca é considerada.
-            </label>
-
-        </div>
-
-
-
-        <!-- PERGUNTA 4 -->
-
-        <div class="pergunta">
-
-            <h3>
-                Quando você comete um erro,
-                como a outra pessoa reage?
-            </h3>
-
-            <label>
-                <input type="radio" name="q4" value="0">
-                Conversa e tenta resolver.
-            </label>
-
-            <label>
-                <input type="radio" name="q4" value="2">
-                Fica chateada, mas depois conversa.
-            </label>
-
-            <label>
-                <input type="radio" name="q4" value="4">
-                Usa o erro para humilhar ou controlar.
-            </label>
-
-        </div>
-
-
-
-        <!-- PERGUNTA 5 -->
-
-        <div class="pergunta">
-
-            <h3>
-                Você sente liberdade para manter seus amigos,
-                familiares e interesses?
-            </h3>
-
-            <label>
-                <input type="radio" name="q5" value="0">
-                Sim, tenho meu espaço.
-            </label>
-
-            <label>
-                <input type="radio" name="q5" value="2">
-                Existem algumas dificuldades.
-            </label>
-
-            <label>
-                <input type="radio" name="q5" value="4">
-                Sinto que tentam controlar minhas escolhas.
-            </label>
-
-        </div>
-
-
-
-        <!-- PERGUNTA 6 -->
-
-        <div class="pergunta">
-
-            <h3>
-                Como a outra pessoa reage quando você
-                sai ou faz algo sozinho(a)?
-            </h3>
-
-            <label>
-                <input type="radio" name="q6" value="0">
-                Confia normalmente.
-            </label>
-
-            <label>
-                <input type="radio" name="q6" value="2">
-                Demonstra insegurança algumas vezes.
-            </label>
-
-            <label>
-                <input type="radio" name="q6" value="4">
-                Tenta impedir ou controlar.
-            </label>
-
-        </div>
-
-
-
-        <!-- PERGUNTA 7 -->
-
-        <div class="pergunta">
-
-            <h3>
-                A outra pessoa costuma querer saber
-                constantemente onde você está?
-            </h3>
-
-            <label>
-                <input type="radio" name="q7" value="0">
-                Demonstra cuidado com respeito.
-            </label>
-
-            <label>
-                <input type="radio" name="q7" value="2">
-                Pergunta frequentemente.
-            </label>
-
-            <label>
-                <input type="radio" name="q7" value="4">
-                Exige explicações e tenta controlar.
-            </label>
-
-        </div>
-
-
-
-        <!-- PERGUNTA 8 -->
-
-        <div class="pergunta">
-
-            <h3>
-                Quando você diz "não", sua decisão
-                é respeitada?
-            </h3>
-
-            <label>
-                <input type="radio" name="q8" value="0">
-                Sim.
-            </label>
-
-            <label>
-                <input type="radio" name="q8" value="2">
-                Às vezes existe pressão.
-            </label>
-
-            <label>
-                <input type="radio" name="q8" value="4">
-                Meu limite não é respeitado.
-            </label>
-
-        </div>
-
-
-
-        <!-- PERGUNTA 9 -->
-
-        <div class="pergunta">
-
-            <h3>
-                Como você se sente na maior parte
-                do tempo nessa relação?
-            </h3>
-
-            <label>
-                <input type="radio" name="q9" value="0">
-                Feliz e respeitado(a).
-            </label>
-
-            <label>
-                <input type="radio" name="q9" value="2">
-                Tenho algumas preocupações.
-            </label>
-
-            <label>
-                <input type="radio" name="q9" value="4">
-                Sinto medo, tristeza ou muita pressão.
-            </label>
-
-        </div>
-
-
-
-        <!-- PERGUNTA 10 -->
-
-        <div class="pergunta">
-
-            <h3>
-                Depois de responder, como você
-                avalia essa relação?
-            </h3>
-
-            <label>
-                <input type="radio" name="q10" value="0">
-                Existe respeito e equilíbrio.
-            </label>
-
-            <label>
-                <input type="radio" name="q10" value="2">
-                Existem pontos que precisam melhorar.
-            </label>
-
-            <label>
-                <input type="radio" name="q10" value="4">
-                Existem situações que precisam de atenção.
-            </label>
-
-        </div>
-
-    </form>
-
-
-
-    <!-- AVISO INLINE -->
-
-    <p id="avisoQuiz" class="aviso-quiz" role="alert"></p>
-
-    <!-- BOTÕES -->
-
-    <div class="botoes-questionario">
-
-        <button
-            id="btnAnterior"
-            type="button"
-            disabled
-        >
-
-            <i class="fa-solid fa-arrow-left"></i>
-
-            Anterior
-
-        </button>
-
-
-        <button
-            id="btnProximo"
-            type="button"
-        >
-
-            Próxima
-
-            <i class="fa-solid fa-arrow-right"></i>
-
-        </button>
-
-    </div>
-
-</div>
-
-
 </section>
 
-<!-- =====================================================
-                         ANÁLISE
-===================================================== -->
+<!-- ===================== ANÁLISE ===================== -->
+<section id="analise" class="analise" style="display:none;">
+    <div class="container">
+        <h2>Analisando suas respostas...</h2>
+        <p>Aguarde enquanto o sistema organiza os padrões encontrados nas suas respostas.</p>
+        <div class="loading"><div class="circulo"></div></div>
+        <div class="etapas">
 
-<section
-    id="analise"
-    class="analise"
-    style="display:none;"
->
-
-<div class="container">
-
-    <h2>
-        Analisando suas respostas...
-    </h2>
-
-    <p>
-        Aguarde enquanto o sistema organiza
-        os padrões encontrados nas suas respostas.
-    </p>
-
-    <div class="loading">
-
-        <div class="circulo"></div>
-
+        <div class="etapa"><i class="fa-solid fa-circle-check"></i><span>Conferindo respostas</span></div>
+        <div class="etapa"><i class="fa-solid fa-circle-check"></i><span>Comparando indicadores</span></div>
+        <div class="etapa"><i class="fa-solid fa-circle-check"></i><span>Identificando padrões</span></div>
+        <div class="etapa"><i class="fa-solid fa-circle-check"></i><span>Preparando resultado</span></div>
+        </div>
     </div>
-
-    <div class="etapas">
-
-        <div class="etapa">
-            <i class="fa-solid fa-circle-check"></i>
-            <span>Conferindo respostas</span>
-        </div>
-
-        <div class="etapa">
-            <i class="fa-solid fa-circle-check"></i>
-            <span>Comparando indicadores</span>
-        </div>
-
-        <div class="etapa">
-            <i class="fa-solid fa-circle-check"></i>
-            <span>Identificando padrões</span>
-        </div>
-
-        <div class="etapa">
-            <i class="fa-solid fa-circle-check"></i>
-            <span>Preparando resultado</span>
-        </div>
-
-    </div>
-
-</div>
-
-
 </section>
 
-<!-- =====================================================
-                         RESULTADO
-===================================================== -->
+<!-- ===================== RESULTADO ===================== -->
+<section id="resultado" class="resultado" style="display:none;">
+    <div class="container">
+        <div class="resultado-card">
 
-<section
-    id="resultado"
-    class="resultado"
-    style="display:none;"
->
+            <div class="resultado-cabecalho">
+                <span class="icone-resultado"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i></span>
+                <h2 id="tituloResultado" tabindex="-1">Sua análise</h2>
+                <p>Uma visão geral baseada nas respostas fornecidas.</p>
+            </div>
 
+            <div id="mensagemResultado">Seu resultado aparecerá aqui.</div>
 
-<div class="container">
+            <div class="grafico-container">
+                <h3>Indicadores da relação</h3>
+                <p>Os valores representam os indicadores calculados a partir das respostas.</p>
 
-    <div class="resultado-card">
+                <div class="seletor-grafico">
+                    <label for="tipoGrafico">Visualização dos resultados</label>
+                    <select id="tipoGrafico">
+                        <option value="barra">📊 Gráfico de Barras</option>
+                        <option value="radar">🕸️ Gráfico Radar</option>
+                    </select>
+                </div>
 
+                <div class="canvas-container" style="position:relative;width:100%;height:400px;">
+                    <canvas id="graficoResultado" role="img" aria-label="Gráfico dos indicadores da relação"></canvas>
+                </div>
+            </div>
 
-        <!-- CABEÇALHO -->
+            <div class="graficos">
 
-        <div class="resultado-cabecalho">
+            <div class="item-grafico">
+                <div class="indicador-topo"><span>Comunicação</span><strong id="valorComunicacao">0%</strong></div>
+                <div class="barra"><div id="grafico1"></div></div>
+            </div>
 
-            <span class="icone-resultado">
-                <i class="fa-solid fa-chart-pie"></i>
-            </span>
+            <div class="item-grafico">
+                <div class="indicador-topo"><span>Respeito</span><strong id="valorRespeito">0%</strong></div>
+                <div class="barra"><div id="grafico2"></div></div>
+            </div>
 
-            <h2 id="tituloResultado" tabindex="-1">
-                Sua análise
-            </h2>
+            <div class="item-grafico">
+                <div class="indicador-topo"><span>Confiança</span><strong id="valorConfianca">0%</strong></div>
+                <div class="barra"><div id="grafico3"></div></div>
+            </div>
 
-            <p>
-                Uma visão geral baseada nas respostas fornecidas.
-            </p>
+            <div class="item-grafico">
+                <div class="indicador-topo"><span>Liberdade</span><strong id="valorLiberdade">0%</strong></div>
+                <div class="barra"><div id="grafico4"></div></div>
+            </div>
 
-        </div>
-
-
-
-        <!-- MENSAGEM -->
-
-        <div id="mensagemResultado">
-
-            Seu resultado aparecerá aqui.
-
-        </div>
-
-
-
-        <!-- =================================================
-                          GRÁFICO
-        ================================================= -->
-
-        <div class="grafico-container">
-
-            <h3>
-                Indicadores da relação
-            </h3>
-
-            <p>
-                Os valores representam os indicadores
-                calculados a partir das respostas.
-            </p>
-
-
-            <!-- SELETOR ÚNICO -->
-
-            <div class="seletor-grafico">
-
-                <label for="tipoGrafico">
-                    Visualização dos resultados
-                </label>
-
-                <select id="tipoGrafico">
-
-                    <option value="barra">
-                        📊 Gráfico de Barras
-                    </option>
-
-                    <option value="radar">
-                        🕸️ Gráfico Radar
-                    </option>
-
-                </select>
+            <div class="item-grafico">
+                <div class="indicador-topo"><span>Segurança</span><strong id="valorSeguranca">0%</strong></div>
+                <div class="barra"><div id="grafico5"></div></div>
+            </div>
 
             </div>
 
+            <div id="orientacoes"></div>
 
-            <!-- CANVAS -->
-
-            <div
-                class="canvas-container"
-                style="
-                    position:relative;
-                    width:100%;
-                    height:400px;
-                "
-            >
-
-                <canvas
-                    id="graficoResultado"
-                ></canvas>
-
+            <div class="acoes">
+                <button id="btnRefazer" class="botao" type="button">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i> Refazer questionário
+                </button>
+                <button id="btnPDF" class="botao2" type="button">
+                    <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Baixar resultado
+                </button>
             </div>
 
         </div>
-
-
-
-        <!-- =================================================
-                     INDICADORES
-        ================================================= -->
-
-        <div class="graficos">
-
-
-            <!-- COMUNICAÇÃO -->
-
-            <div class="item-grafico">
-
-                <div class="indicador-topo">
-
-                    <span>
-                        Comunicação
-                    </span>
-
-                    <strong id="valorComunicacao">
-                        0%
-                    </strong>
-
-                </div>
-
-                <div class="barra">
-
-                    <div id="grafico1"></div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- RESPEITO -->
-
-            <div class="item-grafico">
-
-                <div class="indicador-topo">
-
-                    <span>
-                        Respeito
-                    </span>
-
-                    <strong id="valorRespeito">
-                        0%
-                    </strong>
-
-                </div>
-
-                <div class="barra">
-
-                    <div id="grafico2"></div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- CONFIANÇA -->
-
-            <div class="item-grafico">
-
-                <div class="indicador-topo">
-
-                    <span>
-                        Confiança
-                    </span>
-
-                    <strong id="valorConfianca">
-                        0%
-                    </strong>
-
-                </div>
-
-                <div class="barra">
-
-                    <div id="grafico3"></div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- LIBERDADE -->
-
-            <div class="item-grafico">
-
-                <div class="indicador-topo">
-
-                    <span>
-                        Liberdade
-                    </span>
-
-                    <strong id="valorLiberdade">
-                        0%
-                    </strong>
-
-                </div>
-
-                <div class="barra">
-
-                    <div id="grafico4"></div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- SEGURANÇA -->
-
-            <div class="item-grafico">
-
-                <div class="indicador-topo">
-
-                    <span>
-                        Segurança
-                    </span>
-
-                    <strong id="valorSeguranca">
-                        0%
-                    </strong>
-
-                </div>
-
-                <div class="barra">
-
-                    <div id="grafico5"></div>
-
-                </div>
-
-            </div>
-
-
+    </div>
+</section>
+
+<!-- ===================== CANAIS DE AJUDA ===================== -->
+<section id="ajuda" class="ajuda">
+    <div class="container">
+        <h2>Canais de ajuda</h2>
+        <p>Se você ou alguém que você conhece precisa de apoio, estes serviços são gratuitos. Você pode ligar a qualquer momento.</p>
+        <div class="ajuda-grid">
+
+            <a class="ajuda-card" href="tel:180"><i class="fa-solid fa-phone"></i><b>180</b><strong>Central de Atendimento à Mulher</strong><span>Gratuito, 24 horas</span></a>
+            <a class="ajuda-card" href="tel:100"><i class="fa-solid fa-shield-halved"></i><b>100</b><strong>Disque Direitos Humanos</strong><span>Inclui crianças e adolescentes</span></a>
+            <a class="ajuda-card" href="tel:190"><i class="fa-solid fa-building-shield"></i><b>190</b><strong>Polícia Militar</strong><span>Perigo imediato</span></a>
+            <a class="ajuda-card" href="tel:188"><i class="fa-solid fa-hand-holding-heart"></i><b>188</b><strong>CVV – apoio emocional</strong><span>Gratuito, 24 horas</span></a>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== CONTATO ===================== -->
+<section id="contato" class="contato">
+    <div class="container">
+        <h2>Fale conosco</h2>
+        <p>Este projeto foi desenvolvido com finalidade educativa como Trabalho de Conclusão de Curso.</p>
+
+        <form id="formContato">
+            <input type="text" name="nome" placeholder="Nome" aria-label="Nome" autocomplete="name" required minlength="2">
+            <input type="email" name="email" placeholder="E-mail" aria-label="E-mail" autocomplete="email" required>
+            <textarea name="mensagem" placeholder="Mensagem" aria-label="Mensagem" required minlength="10" rows="5"></textarea>
+
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;">
+
+            <button class="botao" type="submit">Enviar</button>
+
+            <p id="statusContato" class="status-contato" role="status" aria-live="polite"></p>
+        </form>
+    </div>
+</section>
+
+</main>
+
+<!-- ===================== MODAL DE ACOLHIMENTO ===================== -->
+<div id="modalAcolhimento" role="dialog" aria-modal="true" aria-labelledby="tituloAcolhimento">
+    <div class="modal-acolhimento">
+
+        <button id="fecharAcolhimento" class="fechar-modal" type="button" aria-label="Fechar">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+
+        <div class="modal-icone"><i class="fa-solid fa-heart" aria-hidden="true"></i></div>
+
+        <h2 id="tituloAcolhimento">Você não precisa passar por isso sozinho(a).</h2>
+
+        <p>Algumas respostas apresentaram vários sinais que merecem atenção.</p>
+
+        <p>
+            O questionário não consegue determinar sozinho o que está acontecendo. Mas, se alguma
+            situação fez você se reconhecer aqui, você merece ser ouvido(a), respeitado(a) e acolhido(a).
+        </p>
+
+        <div class="aviso-acolhimento">
+            <i class="fa-solid fa-shield-heart" aria-hidden="true"></i>
+            <span>Escolha a opção que fizer mais sentido para você.</span>
         </div>
 
-
-
-        <!-- ORIENTAÇÕES -->
-
-        <div id="orientacoes"></div>
-
-
-
-        <!-- AÇÕES -->
-
-        <div class="acoes">
-
-            <button
-                id="btnRefazer"
-                class="botao"
-                type="button"
-            >
-
-                <i class="fa-solid fa-rotate"></i>
-
-                Refazer questionário
-
+        <div class="opcoes-acolhimento">
+            <button id="btnApoio" type="button" aria-expanded="false">
+                <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
+                <span>Buscar apoio</span>
+                <small>Encontrar caminhos para conversar e pedir ajuda</small>
             </button>
 
-
-            <button
-                id="btnPDF"
-                class="botao2"
-                type="button"
-            >
-
-                <i class="fa-solid fa-file-arrow-down"></i>
-
-                Baixar resultado
-
+            <button id="btnDenuncia" type="button" aria-expanded="false">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                <span>Opções de denúncia</span>
+                <small>Conhecer caminhos oficiais de denúncia</small>
             </button>
-
         </div>
 
-    </div>
-
-</div>
-
-
-</section>
-
-<!-- =====================================================
-                          CONTATO
-===================================================== -->
-
-<section
-    id="contato"
-    class="contato"
->
-
-
-<div class="container">
-
-    <h2>
-        Fale conosco
-    </h2>
-
-    <p>
-        Este projeto foi desenvolvido com finalidade
-        educativa como Trabalho de Conclusão de Curso.
-    </p>
-
-
-    <form id="formContato">
-
-        <input
-            type="text"
-            name="nome"
-            placeholder="Nome"
-            autocomplete="name"
-            required
-            minlength="2"
-        >
-
-
-        <input
-            type="email"
-            name="email"
-            placeholder="E-mail"
-            autocomplete="email"
-            required
-        >
-
-
-        <textarea
-            name="mensagem"
-            placeholder="Mensagem"
-            required
-            minlength="10"
-            rows="5"
-        ></textarea>
-
-
-        <input
-            type="checkbox"
-            name="botcheck"
-            tabindex="-1"
-            autocomplete="off"
-            aria-hidden="true"
-            style="position:absolute;left:-9999px;"
-        >
-
-        <button
-            class="botao"
-            type="submit"
-        >
-
-            Enviar
-
-        </button>
-
-        <p id="statusContato" class="status-contato" role="status" aria-live="polite"></p>
-    </form>
-
-</div>
-
-
-</section>
-
-<!-- =====================================================
-                    MODAL DE ACOLHIMENTO
-===================================================== -->
-
-<div
-    id="modalAcolhimento"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="tituloAcolhimento"
->
-
-
-<div class="modal-acolhimento">
-
-
-    <button
-        id="fecharAcolhimento"
-        class="fechar-modal"
-        type="button"
-        aria-label="Fechar"
-    >
-
-        <i class="fa-solid fa-xmark"></i>
-
-    </button>
-
-
-
-    <div class="modal-icone">
-
-        <i class="fa-solid fa-heart"></i>
-
-    </div>
-
-
-    <h2 id="tituloAcolhimento">
-
-        Você não precisa passar por isso sozinho(a).
-
-    </h2>
-
-
-    <p>
-
-        Algumas respostas apresentaram vários sinais
-        que merecem atenção.
-
-    </p>
-
-
-    <p>
-
-        O questionário não consegue determinar sozinho
-        o que está acontecendo. Mas, se alguma situação
-        fez você se reconhecer aqui, você merece ser
-        ouvido(a), respeitado(a) e acolhido(a).
-
-    </p>
-
-
-    <div class="aviso-acolhimento">
-
-        <i class="fa-solid fa-shield-heart"></i>
-
-        <span>
-            Escolha a opção que fizer mais sentido para você.
-        </span>
-
-    </div>
-
-
-
-    <!-- OPÇÕES PRINCIPAIS -->
-
-    <div class="opcoes-acolhimento">
-
-
-        <button
-            id="btnApoio"
-            type="button"
-        >
-
-            <i class="fa-solid fa-hand-holding-heart"></i>
-
-            <span>
-                Buscar apoio
-            </span>
-
-            <small>
-                Encontrar caminhos para conversar e pedir ajuda
-            </small>
-
-        </button>
-
-
-
-        <button
-            id="btnDenuncia"
-            type="button"
-        >
-
-            <i class="fa-solid fa-shield-halved"></i>
-
-            <span>
-                Opções de denúncia
-            </span>
-
-            <small>
-                Conhecer caminhos oficiais de denúncia
-            </small>
-
-        </button>
-
-    </div>
-
-
-
-    <!-- =================================================
-                     BUSCAR APOIO
-    ================================================= -->
-
-    <div
-        id="opcoesApoio"
-        class="painel-acolhimento"
-    >
-
-        <h3>
-
-            <i class="fa-solid fa-hand-holding-heart"></i>
-
-            Buscar apoio
-
-        </h3>
-
-
-        <p>
-
-            Conversar com alguém de confiança pode ser
-            um primeiro passo. Você pode procurar familiares,
-            amigos, professores, responsáveis ou profissionais
-            de apoio.
-
-        </p>
-
-
-        <div class="lista-apoio">
-
-
-            <div class="apoio-item">
-
-                <i class="fa-solid fa-user-group"></i>
-
-                <div>
-
-                    <strong>
-                        Pessoa de confiança
-                    </strong>
-
-                    <span>
-                        Alguém com quem você se sinta seguro(a)
-                        para conversar.
-                    </span>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="apoio-item">
-
-                <i class="fa-solid fa-school"></i>
-
-                <div>
-
-                    <strong>
-                        Escola
-                    </strong>
-
-                    <span>
-                        Professor, orientação escolar ou
-                        outro adulto responsável.
-                    </span>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="apoio-item">
-
-                <i class="fa-solid fa-user-doctor"></i>
-
-                <div>
-
-                    <strong>
-                        Profissional de apoio
-                    </strong>
-
-                    <span>
-                        Um profissional qualificado pode
-                        ajudar a compreender a situação.
-                    </span>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =================================================
-                     CONVITE PARA IA
-    ================================================= -->
-
-    <div class="ia-convite">
-
-        <div class="ia-convite-icone">
-
-            <i class="fa-solid fa-robot"></i>
-
-        </div>
-
-
-        <div class="ia-convite-texto">
-
-            <strong>
-                Quer conversar primeiro?
-            </strong>
-
+        <div id="opcoesApoio" class="painel-acolhimento">
+            <h3><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i> Buscar apoio</h3>
             <p>
-                Nossa IA de acolhimento pode ouvir você,
-                ajudar a organizar seus pensamentos e
-                apresentar caminhos de apoio.
+                Conversar com alguém de confiança pode ser um primeiro passo. Você pode procurar familiares,
+                amigos, professores, responsáveis ou profissionais de apoio.
             </p>
-
-        </div>
-
-
-        <button
-            id="btnAbrirIAApoio"
-            type="button"
-            class="botao-ia"
-        >
-
-            <i class="fa-solid fa-comments"></i>
-
-            Conversar com a IA
-
-        </button>
-
-    </div>
-
-
-
-    <!-- =================================================
-                   OPÇÕES DE DENÚNCIA
-    ================================================= -->
-
-    <div
-        id="opcoesDenuncia"
-        class="painel-acolhimento"
-    >
-
-        <h3>
-
-            <i class="fa-solid fa-shield-halved"></i>
-
-            Opções de denúncia
-
-        </h3>
-
-
-        <p>
-
-            Se você acredita que uma situação precisa ser
-            comunicada, procure um canal oficial ou uma
-            pessoa responsável que possa ajudar.
-
-        </p>
-
-
-        <div class="lista-denuncia">
-
-
-            <a href="tel:180" class="denuncia-item">
-                <i class="fa-solid fa-phone"></i>
-                <div>
-                    <strong>Ligue 180</strong>
-                    <span>Central de Atendimento à Mulher. Gratuito, 24 horas.</span>
-                </div>
-            </a>
-
-            <a href="tel:100" class="denuncia-item">
-                <i class="fa-solid fa-shield-halved"></i>
-                <div>
-                    <strong>Disque 100</strong>
-                    <span>Denúncias de violações de direitos humanos, inclusive contra crianças e adolescentes.</span>
-                </div>
-            </a>
-
-            <a href="tel:190" class="denuncia-item">
-                <i class="fa-solid fa-building-shield"></i>
-                <div>
-                    <strong>190 - Polícia Militar</strong>
-                    <span>Para situações de perigo imediato.</span>
-                </div>
-            </a>
-
-            <a href="tel:188" class="denuncia-item">
-                <i class="fa-solid fa-hand-holding-heart"></i>
-                <div>
-                    <strong>188 - CVV</strong>
-                    <span>Apoio emocional gratuito, 24 horas, também por chat em cvv.org.br.</span>
-                </div>
-            </a>
-
-            <div class="aviso-denuncia">
-
-                <i class="fa-solid fa-triangle-exclamation"></i>
-
-                <span>
-
-                    Em uma situação de perigo imediato,
-                    procure ajuda presencial de um adulto
-                    de confiança ou dos serviços de emergência
-                    da sua região.
-
-                </span>
-
+            <div class="lista-apoio">
+                <div class="apoio-item"><i class="fa-solid fa-user-group" aria-hidden="true"></i>
+                    <div><strong>Pessoa de confiança</strong><span>Alguém com quem você se sinta seguro(a) para conversar.</span></div></div>
+                <div class="apoio-item"><i class="fa-solid fa-school" aria-hidden="true"></i>
+                    <div><strong>Escola</strong><span>Professor, orientação escolar ou outro adulto responsável.</span></div></div>
+                <div class="apoio-item"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
+                    <div><strong>Profissional de apoio</strong><span>Um profissional qualificado pode ajudar a compreender a situação.</span></div></div>
             </div>
-
-
         </div>
 
+        <div class="ia-convite">
+            <div class="ia-convite-icone"><i class="fa-solid fa-robot" aria-hidden="true"></i></div>
+            <div class="ia-convite-texto">
+                <strong>Quer conversar primeiro?</strong>
+                <p>Nossa IA de acolhimento pode ouvir você, ajudar a organizar seus pensamentos e apresentar caminhos de apoio.</p>
+            </div>
+            <button id="btnAbrirIAApoio" type="button" class="botao-ia">
+                <i class="fa-solid fa-comments" aria-hidden="true"></i> Conversar com a IA
+            </button>
+        </div>
+
+        <div id="opcoesDenuncia" class="painel-acolhimento">
+            <h3><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Opções de denúncia</h3>
+            <p>
+                Se você acredita que uma situação precisa ser comunicada, procure um canal oficial ou uma
+                pessoa responsável que possa ajudar.
+            </p>
+            <div class="lista-denuncia">
+
+            <a href="tel:180" class="denuncia-item"><i class="fa-solid fa-phone"></i><div><strong>180 - Central de Atendimento à Mulher</strong><span>Gratuito, 24 horas</span></div></a>
+            <a href="tel:100" class="denuncia-item"><i class="fa-solid fa-shield-halved"></i><div><strong>100 - Disque Direitos Humanos</strong><span>Inclui crianças e adolescentes</span></div></a>
+            <a href="tel:190" class="denuncia-item"><i class="fa-solid fa-building-shield"></i><div><strong>190 - Polícia Militar</strong><span>Perigo imediato</span></div></a>
+            <a href="tel:188" class="denuncia-item"><i class="fa-solid fa-hand-holding-heart"></i><div><strong>188 - CVV – apoio emocional</strong><span>Gratuito, 24 horas</span></div></a>
+                <div class="aviso-denuncia">
+                    <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                    <span>
+                        Em uma situação de perigo imediato, procure ajuda presencial de um adulto de confiança
+                        ou dos serviços de emergência da sua região.
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <button id="btnAgoraNao" class="btn-secundario-modal" type="button">Agora não</button>
+
     </div>
-
-
-
-    <!-- FECHAR -->
-
-    <button
-        id="btnAgoraNao"
-        class="btn-secundario-modal"
-        type="button"
-    >
-
-        Agora não
-
-    </button>
-
-
 </div>
 
-
-</div>
-
+<!-- ===================== BOTÃO FLUTUANTE DA IA ===================== -->
 <button id="btnAbrirIA" class="botao-flutuante-ia" type="button" aria-label="Abrir conversa com a IA de acolhimento">
-    <i class="fa-solid fa-comments"></i>
+    <i class="fa-solid fa-comments" aria-hidden="true"></i>
     <span>Conversar</span>
 </button>
 
-<!-- =====================================================
-                    JANELA DA IA
-===================================================== -->
+<!-- ===================== JANELA DA IA ===================== -->
+<section id="janelaIA" class="janela-ia" aria-hidden="true" aria-labelledby="tituloIA">
+    <div class="ia-container">
 
-<section
-    id="janelaIA"
-    class="janela-ia"
-    aria-hidden="true"
-    aria-labelledby="tituloIA"
->
-
-
-<div class="ia-container">
-
-
-    <!-- CABEÇALHO -->
-
-    <header class="ia-header">
-
-        <div class="ia-identidade">
-
-            <div class="ia-avatar">
-
-                <i class="fa-solid fa-robot"></i>
-
+        <header class="ia-header">
+            <div class="ia-identidade">
+                <div class="ia-avatar"><i class="fa-solid fa-robot" aria-hidden="true"></i></div>
+                <div>
+                    <h2 id="tituloIA">Entre Nós IA</h2>
+                    <span class="ia-status"><i class="fa-solid fa-circle" aria-hidden="true"></i> Assistente de acolhimento</span>
+                </div>
             </div>
-
-
-            <div>
-
-                <h2 id="tituloIA">
-                    Entre Nós IA
-                </h2>
-
-                <span class="ia-status">
-
-                    <i class="fa-solid fa-circle"></i>
-
-                    Assistente de acolhimento
-
-                </span>
-
+            <div class="ia-acoes-header">
+                <button id="btnReiniciarIA" type="button" aria-label="Reiniciar conversa" title="Reiniciar conversa">
+                    <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                </button>
+                <button id="btnFecharIA" type="button" aria-label="Fechar IA">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
             </div>
+        </header>
 
+        <div id="mensagensIA" class="mensagens-ia" aria-live="polite"></div>
+
+        <div id="indicadorDigitacao" class="indicador-digitacao">
+            <span></span><span></span><span></span>
+            <small>A IA está pensando...</small>
         </div>
 
-
-        <div class="ia-acoes-header">
-
-            <button
-                id="btnReiniciarIA"
-                type="button"
-                aria-label="Reiniciar conversa"
-                title="Reiniciar conversa"
-            >
-
-                <i class="fa-solid fa-rotate"></i>
-
+        <div id="sugestoesIA" class="sugestoes-ia">
+            <button type="button" data-sugestao="Quero conversar sobre uma situação">
+                <i class="fa-solid fa-comments" aria-hidden="true"></i> Quero conversar
             </button>
-
-
-            <button
-                id="btnFecharIA"
-                type="button"
-                aria-label="Fechar IA"
-            >
-
-                <i class="fa-solid fa-xmark"></i>
-
+            <button type="button" data-sugestao="Estou confuso e não sei o que fazer">
+                <i class="fa-solid fa-circle-question" aria-hidden="true"></i> Não sei o que fazer
             </button>
-
+            <button type="button" data-sugestao="Quero falar sobre minha segurança">
+                <i class="fa-solid fa-shield-heart" aria-hidden="true"></i> Segurança
+            </button>
         </div>
 
-    </header>
+        <form id="formIA" class="form-ia">
+            <textarea id="campoIA" rows="1" maxlength="1000" placeholder="Escreva o que você gostaria de contar..." aria-label="Mensagem para a IA"></textarea>
+            <button id="btnEnviarIA" type="submit" aria-label="Enviar mensagem">
+                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+            </button>
+        </form>
 
-
-
-    <!-- =================================================
-                     MENSAGENS DA IA
-    ================================================= -->
-
-    <div
-        id="mensagensIA"
-        class="mensagens-ia"
-        aria-live="polite"
-    ></div>
-
-
-
-    <!-- =================================================
-                   INDICADOR DE DIGITAÇÃO
-    ================================================= -->
-
-    <div
-        id="indicadorDigitacao"
-        class="indicador-digitacao"
-    >
-
-        <span></span>
-        <span></span>
-        <span></span>
-
-        <small>
-            A IA está pensando...
-        </small>
+        <div class="ia-aviso">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+            <span>
+                Esta IA oferece acolhimento e orientação inicial, funciona no seu navegador e não envia suas
+                mensagens a nenhum servidor. Ela não substitui profissionais ou serviços de apoio.
+            </span>
+        </div>
 
     </div>
-
-
-
-    <!-- =================================================
-                      SUGESTÕES
-    ================================================= -->
-
-    <div
-        id="sugestoesIA"
-        class="sugestoes-ia"
-    >
-
-        <button
-            type="button"
-            data-sugestao="Quero conversar sobre uma situação"
-        >
-
-            <i class="fa-solid fa-comments"></i>
-
-            Quero conversar
-
-        </button>
-
-
-        <button
-            type="button"
-            data-sugestao="Estou confuso e não sei o que fazer"
-        >
-
-            <i class="fa-solid fa-circle-question"></i>
-
-            Não sei o que fazer
-
-        </button>
-
-
-        <button
-            type="button"
-            data-sugestao="Quero falar sobre minha segurança"
-        >
-
-            <i class="fa-solid fa-shield-heart"></i>
-
-            Segurança
-
-        </button>
-
-    </div>
-
-
-
-    <!-- =================================================
-                        INPUT
-    ================================================= -->
-
-    <form
-        id="formIA"
-        class="form-ia"
-    >
-
-        <textarea
-            id="campoIA"
-            rows="1"
-            maxlength="1000"
-            placeholder="Escreva o que você gostaria de contar..."
-            aria-label="Mensagem para a IA"
-        ></textarea>
-
-
-        <button
-            id="btnEnviarIA"
-            type="submit"
-            aria-label="Enviar mensagem"
-        >
-
-            <i class="fa-solid fa-paper-plane"></i>
-
-        </button>
-
-    </form>
-
-
-
-    <!-- AVISO -->
-
-    <div class="ia-aviso">
-
-        <i class="fa-solid fa-circle-info"></i>
-
-        <span>
-            Esta IA oferece acolhimento e orientação inicial, funciona no seu navegador e não envia suas mensagens a nenhum servidor. Ela não substitui profissionais ou serviços de apoio.
-        </span>
-
-    </div>
-
-
-</div>
 </section>
 
-<!-- =====================================================
-                          FOOTER
-===================================================== -->
-
+<!-- ===================== FOOTER ===================== -->
 <footer>
-
-
-<p>
-    © 2026 - Entre Nós
-</p>
-
-<p>
-    Trabalho de Conclusão de Curso -
-    Desenvolvimento de Sistemas
-</p>
+    <p>© 2026 - Entre Nós</p>
+    <p>Trabalho de Conclusão de Curso - Desenvolvimento de Sistemas</p>
+    <p>Precisa sair rápido? Use o botão "Saída rápida" ou aperte Esc duas vezes.</p>
 </footer>
 
-<!-- =====================================================
-                     JAVASCRIPT
-===================================================== -->
+<noscript>
+    <p style="padding:20px;text-align:center">Este site precisa de JavaScript. Em caso de perigo, ligue 190, 180 ou 188.</p>
+</noscript>
 
-<!-- Chart.js -->
-
-<!-- =====================================================
-                     JAVASCRIPT
-===================================================== -->
-
-<!-- Bibliotecas externas -->
+<!-- ===================== JAVASCRIPT ===================== -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
 
 <!-- Sistema principal -->
 <script src="script.js" defer></script>
 
-<!-- IA de acolhimento -->
+<!-- IA de acolhimento (inclui modo escuro, saída rápida e atalhos) -->
 <script src="ia.js" defer></script>
 
 </body>
-
 </html>
-
